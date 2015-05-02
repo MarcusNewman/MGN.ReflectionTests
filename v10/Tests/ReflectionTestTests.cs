@@ -18,7 +18,7 @@ namespace MGN.ReflectionTests.Tests
             GetAssembly();
         }
 
-        private static Assembly GetAssembly()
+        static Assembly GetAssembly()
         {
             Assembly assembly = null;
             try
@@ -41,7 +41,7 @@ namespace MGN.ReflectionTests.Tests
             GetClasstype();
         }
 
-        private static Type GetClasstype()
+        static Type GetClasstype()
         {
             var assembly = GetAssembly();
             var classtype = assembly.GetType(AssemblyName + ".ReflectionTest");
@@ -58,7 +58,7 @@ namespace MGN.ReflectionTests.Tests
             GetAssemblyMethod();
         }
 
-        private static MethodInfo GetAssemblyMethod()
+        static MethodInfo GetAssemblyMethod()
         {
             var methodName = "Assembly";
             var parameterTypes = new Type[] { typeof(String) };
@@ -66,7 +66,7 @@ namespace MGN.ReflectionTests.Tests
             return GetMethod(methodName: methodName, parameterTypes: parameterTypes, returnType: returnType);
         }
 
-        private static MethodInfo GetMethod(string methodName, Type[] parameterTypes, Type returnType)
+        static MethodInfo GetMethod(string methodName, Type[] parameterTypes, Type returnType)
         {
             var classtype = GetClasstype();
             var methodInfo = classtype.GetMethod(name: methodName);
@@ -91,22 +91,12 @@ namespace MGN.ReflectionTests.Tests
             var parameters = new String[] { "InvalidAssemblyName" };
             TestAssemblyMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: true);
         }
-
-
-
-
-        private Assembly TestAssemblyMethod(MethodInfo methodInfo, Object[] parameters = null, Boolean shouldFail = false)
+        
+        Assembly TestAssemblyMethod(MethodInfo methodInfo, Object[] parameters = null, Boolean shouldFail = false)
         {
             return (Assembly)InvokeMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: shouldFail);
         }
-
-
-
-
-
-
-
-        //TODO: Fix relative path issue
+        
         /// <summary>
         /// Assembly method should return an instance of an Assembly with a valid assembly name.
         /// </summary>
@@ -118,16 +108,13 @@ namespace MGN.ReflectionTests.Tests
             TestAssemblyMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: false);
         }
 
-
-
-        private static Object InvokeMethod(MethodInfo methodInfo, Object[] parameters, Boolean shouldFail = false)
+        static Object InvokeMethod(MethodInfo methodInfo, Object[] parameters, Boolean shouldFail = false)
         {
             object resultObject = null;
             Exception caughtException = null;
             try
             {
                 resultObject = methodInfo.Invoke(obj: null, parameters: parameters);
-                //MGN.ReflectionTests.Assembly.Test("MGN.ReflectionTests");// //methodInfo.Invoke(obj: null, parameters: parameters);
             }
             catch (TargetInvocationException targetInvocationException)
             {
@@ -148,7 +135,21 @@ namespace MGN.ReflectionTests.Tests
             }
             return resultObject;
         }
+        /// <summary>
+        /// Tests for the existance of the Class method.
+        /// </summary>
+        [TestMethod]
+        public void Class_method_should_exist()
+        {
+            GetClassMethod();
+        }
 
-
+        static MethodInfo GetClassMethod()
+        {
+            var methodName = "Class";
+            var parameterTypes = new Type[] { typeof(String), typeof(String) };
+            var returnType = typeof(Type);
+            return GetMethod(methodName: methodName, parameterTypes: parameterTypes, returnType: returnType);
+        }
     }
 }

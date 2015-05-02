@@ -10,6 +10,7 @@ namespace MGN.ReflectionTests
     /// </summary>
     public static class ReflectionTest
     {
+        //Todo: allow code to instatiaate this class so they don't have to keep calling get assembly,class method over and over
         // TODO: test this for internal vs external testing relative paths
         //TODO: just check both paths
         /// <summary>
@@ -21,10 +22,8 @@ namespace MGN.ReflectionTests
         public static Assembly Assembly(string assemblyName)
         {
             var currentDirectory = System.Environment.CurrentDirectory;
+            //var relativeAssemblyPath = String.Format("..\\..\\..\\bin\\Debug\\{0}.dll", assemblyName);
             var relativeAssemblyPath = String.Format("..\\..\\..\\..\\{0}\\bin\\Debug\\{0}.dll", assemblyName);
-            //..\\..\\..\\{0}\\bin\\Debug\\{0}.dll", assemblyName);
-            //"..\\..\\..\\bin\\Debug\\{0}.dll", assemblyName);
-
             try
             {
                 return System.Reflection.Assembly.LoadFrom(relativeAssemblyPath);
@@ -34,7 +33,7 @@ namespace MGN.ReflectionTests
                 throw new AssertFailedException(assemblyName + " assembly was not found.", fileNotFoundException);
             }
         }
-        /*
+        
        /// <summary>
        /// Tests for the existance of a class type using reflection.
        /// </summary>
@@ -44,12 +43,12 @@ namespace MGN.ReflectionTests
        /// <exception cref="Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">Thrown when the assembly or class is not found.</exception>
        public static Type Class(String assemblyName, String className)
        {
-           var assembly = Assembly.Test(assemblyName: assemblyName);
+           var assembly = Assembly(assemblyName: assemblyName);
            try { return assembly.GetType(assembly.GetName().Name + "." + className, true); }
            catch (TypeLoadException typeLoadException)
            { throw new Exception(className + " class was not found.", typeLoadException); }
        }
-
+        /*
        /// <summary>
        /// Tests for the existance of a method using reflection.
        /// </summary>
