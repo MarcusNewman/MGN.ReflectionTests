@@ -91,12 +91,12 @@ namespace MGN.ReflectionTests.Tests
             var parameters = new String[] { "InvalidAssemblyName" };
             TestAssemblyMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: true);
         }
-        
+
         Assembly TestAssemblyMethod(MethodInfo methodInfo, Object[] parameters = null, Boolean shouldFail = false)
         {
             return (Assembly)InvokeMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: shouldFail);
         }
-        
+
         /// <summary>
         /// Assembly method should return an instance of an Assembly with a valid assembly name.
         /// </summary>
@@ -104,7 +104,7 @@ namespace MGN.ReflectionTests.Tests
         public void Assembly_method_should_return_an_Assembly()
         {
             var methodInfo = GetAssemblyMethod();
-            var parameters = new String[] { "MGN.ReflectionTests" };
+            var parameters = new String[] { AssemblyName };
             TestAssemblyMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: false);
         }
 
@@ -150,6 +150,77 @@ namespace MGN.ReflectionTests.Tests
             var parameterTypes = new Type[] { typeof(String), typeof(String) };
             var returnType = typeof(Type);
             return GetMethod(methodName: methodName, parameterTypes: parameterTypes, returnType: returnType);
+        }
+
+        /// <summary>
+        /// Class method should fail with an invalid class name.
+        /// </summary>
+        [TestMethod]
+        public void Class_method_should_fail_with_an_invalid_class_name()
+        {
+            var methodInfo = GetClassMethod();
+            var parameters = new String[] { AssemblyName, "InvalidClassName" };
+            TestClassMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: true);
+        }
+
+        Type TestClassMethod(MethodInfo methodInfo, Object[] parameters = null, Boolean shouldFail = false)
+        {
+            return (Type)InvokeMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: shouldFail);
+        }
+
+        /// <summary>
+        /// Class method should return an instance of a Type with a valid class name.
+        /// </summary>
+        [TestMethod]
+        public void Class_method_should_return_an_Type()
+        {
+            var methodInfo = GetClassMethod();
+            var parameters = new String[] { AssemblyName, "ReflectionTest" };
+            TestClassMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: false);
+        }
+
+        /// <summary>
+        /// Tests for the existance of the Method method.
+        /// </summary>
+        [TestMethod]
+        public void Method_method_should_exist()
+        {
+            GetMethodMethod();
+        }
+
+        private MethodInfo GetMethodMethod()
+        {
+            var methodName = "Method";
+            var parameterTypes = new Type[] { typeof(String), typeof(String), typeof(String) };
+            var returnType = typeof(MethodInfo);
+            return GetMethod(methodName: methodName, parameterTypes: parameterTypes, returnType: returnType);
+        }
+
+        /// <summary>
+        /// Method method should fail with an invalid method name.
+        /// </summary>
+        [TestMethod]
+        public void Method_method_should_fail_with_an_invalid_method_name()
+        {
+            var methodInfo = GetMethodMethod();
+            var parameters = new String[] { AssemblyName, "ReflectionTest", "InvalidMethodName" };
+            TestMethodMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: true);
+        }
+
+        MethodInfo TestMethodMethod(MethodInfo methodInfo, Object[] parameters = null, Boolean shouldFail = false)
+        {
+            return (MethodInfo)InvokeMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: shouldFail);
+        }
+
+        /// <summary>
+        /// Method method should return a methodInfo with a valid methof name.
+        /// </summary>
+        [TestMethod]
+        public void Method_method_should_return_a_methodInfo()
+        {
+            var methodInfo = GetMethodMethod();
+            var parameters = new String[] { AssemblyName, "ReflectionTest", "Assembly" };
+            TestMethodMethod(methodInfo: methodInfo, parameters: parameters, shouldFail: false);
         }
     }
 }
