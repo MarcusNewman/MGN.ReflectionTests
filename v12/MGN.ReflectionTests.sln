@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MGN.ReflectionTests", "MGN.ReflectionTests.csproj", "{22D01302-3FF8-4DE3-811F-A930805F0F40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MGN.ReflectionTests.Tests", "Tests\MGN.ReflectionTests.Tests.csproj", "{38B5ADFE-9F53-46A7-8237-9614291AE8DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22D01302-3FF8-4DE3-811F-A930805F0F40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D01302-3FF8-4DE3-811F-A930805F0F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D01302-3FF8-4DE3-811F-A930805F0F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D01302-3FF8-4DE3-811F-A930805F0F40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B5ADFE-9F53-46A7-8237-9614291AE8DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B5ADFE-9F53-46A7-8237-9614291AE8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B5ADFE-9F53-46A7-8237-9614291AE8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B5ADFE-9F53-46A7-8237-9614291AE8DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
